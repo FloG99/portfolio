@@ -17,10 +17,9 @@ export default function Header() {
   const [currentLanguage, setCurrentLanguage] = useState(language);
   const { theme, setTheme } = useTheme();
 
-  const handleChangeLanguage = () => {
-    const newLanguage = currentLanguage === "en" ? "pt" : "en";
-    setCurrentLanguage(newLanguage);
-    changeLanguage(newLanguage);
+  const setLanguage = (lang: string) => {
+    setCurrentLanguage(lang);
+    changeLanguage(lang);
   };
 
   const navLinks = [
@@ -56,10 +55,18 @@ export default function Header() {
                   <Icon className="size-4" icon="prime:language" />
                 </NavigationMenuTrigger>
                 <NavigationMenuContent>
-                  <Button variant="ghost" onClick={handleChangeLanguage}>
+                  <Button
+                    className={currentLanguage === "en" ? "opacity-45 w-full" : "w-full"}
+                    variant="ghost"
+                    onClick={() => setLanguage("en")}>
+                    <Icon icon="circle-flags:us" />
                     English
                   </Button>
-                  <Button variant="ghost" onClick={handleChangeLanguage}>
+                  <Button
+                    className={currentLanguage === "de" ? "opacity-45 w-full" : "w-full"}
+                    variant="ghost"
+                    onClick={() => setLanguage("de")}>
+                    <Icon icon="circle-flags:de" />
                     Deutsch
                   </Button>
                 </NavigationMenuContent>
