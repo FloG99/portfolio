@@ -14,8 +14,9 @@ export default function App() {
         <Header />
         <main className="grow">
           <div className="w-content mx-auto my-3">
-            <h1 className="text-[#4340F2] text-6xl font-black">Florian Göth</h1>
-            <h2 className="text-[#FAFAFF] text-2xl">{t("fullstackWebdev")}</h2>
+            <h1 className="text-primary text-6xl font-black">Florian Göth</h1>
+            <h2 className="text-foreground text-2xl">{t("fullstackWebdev")}</h2>
+            <h2 className="text-foreground text-2xl">{t("myLocation")}</h2>
           </div>
         </main>
         <Footer />

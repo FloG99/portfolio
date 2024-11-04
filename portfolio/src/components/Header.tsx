@@ -7,7 +7,7 @@ import {
   NavigationMenuContent,
   NavigationMenuItem,
   NavigationMenuList,
-  NavigationMenuTrigger,
+  NavigationMenuTrigger
 } from "@/components/ui/navigation-menu";
 import { useTheme } from "@/components/theme-provider";
 
@@ -24,51 +24,60 @@ export default function Header() {
 
   const navLinks = [
     {
-      name: t("home"),
-      href: "/",
+      text: t("home"),
+      href: "/"
     },
     {
-      name: t("projects"),
-      href: "/projects",
+      text: t("projects"),
+      href: "/projects"
     },
     {
-      name: t("contact"),
-      href: "/contact",
+      text: t("contact"),
+      href: "/contact"
+    }
+  ];
+
+  const languages = [
+    {
+      id: "en",
+      text: "English",
+      icon: "circle-flags:us"
     },
+    {
+      id: "de",
+      text: "Deutsch",
+      icon: "circle-flags:de"
+    }
   ];
 
   return (
     <header className="sticky top-0 z-50 py-6 backdrop-blur-sm">
       <nav className="flex items-center justify-between w-content mx-auto">
         <ul className="flex gap-4 sm:gap-8">
-          {navLinks.map((nav, id) => (
-            <li key={id} className="link">
-              <a href={nav.href}>{nav.name}</a>
+          {navLinks.map((nav, i) => (
+            <li key={i} className="link">
+              <a href={nav.href}>{nav.text}</a>
             </li>
           ))}
         </ul>
         <div className="flex gap-0 sm:gap-4">
-          <NavigationMenu>
+          <NavigationMenu delayDuration={0} skipDelayDuration={0}>
             <NavigationMenuList>
               <NavigationMenuItem>
                 <NavigationMenuTrigger>
-                  <Icon className="size-4" icon="prime:language" />
+                  <Icon className="size-4" icon="mdi:language" />
                 </NavigationMenuTrigger>
                 <NavigationMenuContent>
-                  <Button
-                    className={currentLanguage === "en" ? "opacity-45 w-full" : "w-full"}
-                    variant="ghost"
-                    onClick={() => setLanguage("en")}>
-                    <Icon icon="circle-flags:us" />
-                    English
-                  </Button>
-                  <Button
-                    className={currentLanguage === "de" ? "opacity-45 w-full" : "w-full"}
-                    variant="ghost"
-                    onClick={() => setLanguage("de")}>
-                    <Icon icon="circle-flags:de" />
-                    Deutsch
-                  </Button>
+                  {languages.map((lang, i) => (
+                    <Button
+                      key={i}
+                      className={"w-full justify-start " + (currentLanguage === lang.id ? "underline" : "")}
+                      variant="ghost"
+                      onClick={() => setLanguage(lang.id)}>
+                      <Icon icon={lang.icon} />
+                      {lang.text}
+                    </Button>
+                  ))}
                 </NavigationMenuContent>
               </NavigationMenuItem>
             </NavigationMenuList>
